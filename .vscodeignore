@@ -1,12 +1,19 @@
+# dir
 .vscode/**
 .vscode-test/**
 out/**
-node_modules/**
 src/**
+build/**
+node_modules/**
+
+
+# file
+.eslintignore
+.prettierignore
+.stylelintrc.json
 .gitignore
 .yarnrc
-vsc-extension-quickstart.md
+yarn.lock
 **/tsconfig.json
 **/.eslintrc.json
 **/*.map
-**/*.ts

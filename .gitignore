@@ -1,5 +1,10 @@
-out
-dist
-node_modules
+# dir
+out/
+dist/
+node_modules/
 .vscode-test/
+
+# file
 *.vsix
+yarn.lock
+yarn-error.log
