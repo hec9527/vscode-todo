@@ -1,0 +1,16 @@
+# dir
+.idea/
+.vscode/
+out/
+dist/
+build/
+node_modules/
+
+
+# file
+**/*.js
+**/*.jsx
+**/*.ts
+**/*.tsx
+**/*.css
+**/*.html
