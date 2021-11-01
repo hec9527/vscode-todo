@@ -1,37 +1,41 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
+import * as CMD from '../constants/command';
+
+import ViewManager from './view-manager';
+import messageHandler from './message-handler';
+
+const webviewPanel: { current: vscode.WebviewPanel | null } = { current: null };
 
 export function activate(context: vscode.ExtensionContext) {
-    console.log('Congratulations, your extension "vscode-todo" is now active!');
-    let disposable = vscode.commands.registerCommand('vscode-todo.helloWorld', () => {
-        vscode.window.showInformationMessage('Hello World from vscode-todo!');
-    });
+    console.log('vscode-todo is now active!');
 
-    context.subscriptions.push(disposable);
-    const pannel = vscode.window.createWebviewPanel(
-        'test',
-        'test',
-        { viewColumn: vscode.ViewColumn.Active },
-        { enableScripts: true },
+    context.subscriptions.push(
+        vscode.commands.registerCommand(CMD.SHOW_WEBVIEW, () => {
+            const iconPath = vscode.Uri.file(path.join(context.extensionPath, 'assets/todo.png'));
+            const jsPath = vscode.Uri.file(path.join(context.extensionPath, 'dist/webview/index.js'))
+                .with({ scheme: 'vscode-resource' })
+                .toString();
+            webviewPanel.current = ViewManager.getView({
+                jsPath,
+                iconPath,
+                messageHandler,
+            });
+            webviewPanel.current.onDidDispose(() => (webviewPanel.current = null));
+        }),
     );
 
-    const url = vscode.Uri.file(path.join(context.extensionPath, 'dist/webview/index.js'))
-        .with({ scheme: 'vscode-resource' })
-        .toString();
-
-    pannel.webview.html = `<!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <meta charset="UTF-8" />
-            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <title>测试</title>
-        </head>
-        <body>
-            <div id="app"></div>
-            <script src="${url}"></script>
-        </body>
-    </html>`;
+    context.subscriptions.push(
+        vscode.commands.registerCommand(CMD.POST_INFO, (data: any) => {
+            if (!webviewPanel.current) {
+                vscode.commands.executeCommand(CMD.SHOW_WEBVIEW);
+            }
+            webviewPanel.current?.webview.postMessage(data);
+        }),
+    );
 }
 
-export function deactivate() {}
+export function deactivate() {
+    /** 销毁webview */
+    webviewPanel.current?.dispose();
+}

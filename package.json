@@ -27,13 +27,20 @@
     "contributes": {
         "commands": [
             {
-                "command": "vscode-todo.helloWorld",
-                "title": "Hello World"
+                "command": "vscode-todo.showWebview",
+                "title": "createView",
+                "category": "VScode Todo"
+            },
+            {
+                "command": "vscode-todo.postInfo",
+                "title": "postInfo",
+                "category": "VScode Todo"
             }
         ]
     },
     "activationEvents": [
-        "onCommand:vscode-todo.helloWorld"
+        "onCommand:vscode-todo.postInfo",
+        "onCommand:vscode-todo.showWebview"
     ],
     "dependencies": {
         "axios": "^0.24.0",
