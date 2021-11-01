@@ -26,11 +26,14 @@ export function activate(context: vscode.ExtensionContext) {
     );
 
     context.subscriptions.push(
-        vscode.commands.registerCommand(CMD.POST_INFO, (data: any) => {
+        vscode.commands.registerCommand(CMD.POST_INFO, (msg?: IHostMessage) => {
+            const postMsg = () => webviewPanel.current?.webview.postMessage(msg || 'hello world');
+            // if (!msg || !msg.type) return;
             if (!webviewPanel.current) {
-                vscode.commands.executeCommand(CMD.SHOW_WEBVIEW);
+                vscode.commands.executeCommand(CMD.SHOW_WEBVIEW).then(postMsg);
+            } else {
+                postMsg();
             }
-            webviewPanel.current?.webview.postMessage(data);
         }),
     );
 }

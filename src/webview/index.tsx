@@ -3,3 +3,9 @@ import { render } from 'react-dom';
 import App from './app';
 
 render(<App />, document.getElementById('app'));
+
+window.addEventListener('message', (msg: { data: any }) => {
+    console.log(msg);
+    const code = window.acquireVsCodeApi();
+    console.log(code);
+});
