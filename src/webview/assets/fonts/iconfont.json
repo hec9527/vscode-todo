@@ -1,0 +1,51 @@
+{
+  "id": "2910122",
+  "name": "vscode-todo",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "基于vscode的任务清单应用",
+  "glyphs": [
+    {
+      "icon_id": "4406955",
+      "name": "计划",
+      "font_class": "jihua",
+      "unicode": "e653",
+      "unicode_decimal": 58963
+    },
+    {
+      "icon_id": "1191941",
+      "name": "计划任务",
+      "font_class": "jihuarenwu",
+      "unicode": "e670",
+      "unicode_decimal": 58992
+    },
+    {
+      "icon_id": "12331703",
+      "name": "计划信息",
+      "font_class": "jihuaxinxi",
+      "unicode": "e66e",
+      "unicode_decimal": 58990
+    },
+    {
+      "icon_id": "14706450",
+      "name": "全部",
+      "font_class": "quanbu1",
+      "unicode": "e6c0",
+      "unicode_decimal": 59072
+    },
+    {
+      "icon_id": "737116",
+      "name": "today",
+      "font_class": "today",
+      "unicode": "e791",
+      "unicode_decimal": 59281
+    },
+    {
+      "icon_id": "15838525",
+      "name": "search",
+      "font_class": "search",
+      "unicode": "e67d",
+      "unicode_decimal": 59005
+    }
+  ]
+}

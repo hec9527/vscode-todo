@@ -16,6 +16,9 @@ const config = {
         vscode: 'commonjs vscode',
     },
     resolve: {
+        alias: {
+            '@store': path.resolve(__dirname, '../src/webview/stores/'),
+        },
         extensions: ['.tsx', '.ts', '.js'],
     },
     module: {
@@ -29,6 +32,11 @@ const config = {
                 test: /\.less$/,
                 exclude: /node_modules/,
                 use: ['style-loader', 'css-loader', 'less-loader'],
+            },
+            {
+                test: /\.css$/,
+                exclude: /node_modules/,
+                use: ['style-loader', 'css-loader'],
             },
         ],
     },

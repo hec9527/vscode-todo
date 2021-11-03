@@ -1,10 +1,16 @@
 import React from 'react';
 import './index.less';
 
+import Main from './containers/main-box';
+import SideBar from './containers/sider-bar';
+import SashContainer from './containers/sash-box';
+
 const App: React.FC = () => {
     return (
-        <div className=''>
-            <h1>hello vscode</h1>
+        <div className='page-container'>
+            {/* <SashContainer /> */}
+            <SideBar />
+            <Main />
         </div>
     );
 };
